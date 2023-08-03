@@ -7,6 +7,7 @@ const DMTOfficer = require("./routes/DMTOfficer");
 const policeOfficer = require("./routes/policeOfficer");
 const policeStation = require("./routes/policeStation");
 const auth = require("./routes/auth");
+const rule = require("./routes/rule");
 const { handleError } = require("./middlewares/error");
 const { PORT } = require("./config/settings");
 
@@ -20,6 +21,7 @@ app.use("/api/auth", auth);
 app.use("/api/dmt-officer", DMTOfficer);
 app.use("/api/police-officer", policeOfficer);
 app.use("/api/police-station", policeStation);
+app.use("/api/rule", rule);
 
 //handle errors
 

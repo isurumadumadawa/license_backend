@@ -18,6 +18,8 @@ const {
 
 const { CreateDriverAuth, GetDriverAuth, GetDriversAuth } = require("./driver");
 
+const { GetRulesAuth } = require("./rule");
+
 module.exports = {
   CreateDMTOfficerAuth,
   GetDMTOfficerAuth,
@@ -31,4 +33,5 @@ module.exports = {
   CreateDriverAuth,
   GetDriverAuth,
   GetDriversAuth,
+  GetRulesAuth,
 };
