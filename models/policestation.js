@@ -10,13 +10,14 @@ module.exports = (sequelize, DataTypes) => {
     static associate({ User, Panelty }) {
       // define association here
       this.belongsTo(User, { foreignKey: "userId", as: "credintials" });
-      this.hasMany(Panelty, { foreignKey: "policeStation", as: "policeArea" });
+      this.hasMany(Panelty, {
+        foreignKey: "policeStationId",
+        as: "policeArea",
+      });
     }
     toJSON() {
       return {
         ...this.get(),
-        id: undefined,
-        userId: undefined,
       };
     }
   }

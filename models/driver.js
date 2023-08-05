@@ -15,12 +15,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "driverId",
         as: "vehicles",
       });
-      this.hasMany(Panelty, { foreignKey: "driverId", as: "driver" });
+      this.hasMany(Panelty, { foreignKey: "driverId", as: "panelty" });
     }
     toJSON() {
       return {
         ...this.get(),
-        id: undefined,
       };
     }
   }

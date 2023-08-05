@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "vehicleId",
         as: "drivers",
       });
-      this.hasMany(Panelty, { foreignKey: "vehicleType", as: "vehicle" });
+      this.hasMany(Panelty, { foreignKey: "vehicleId", as: "vehicle" });
     }
   }
   Vehicle.init(

@@ -14,20 +14,35 @@ module.exports = {
         defaultValue: DataTypes.UUIDV4,
       },
       driverId: {
-        type: DataTypes.UUID,
-        allowNull: false,
-      },
-      vehicleType: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      policeStation: {
-        type: DataTypes.UUID,
+      vehicleId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      policeStationId: {
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       isClosed: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
+      },
+      isCourt: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+      },
+      issuedDate: {
+        type: DataTypes.DATE,
+        allowNull: false,
+      },
+      expireDate: {
+        type: DataTypes.DATE,
+        allowNull: false,
+      },
+      image: {
+        type: DataTypes.STRING,
       },
       createdAt: {
         allowNull: false,

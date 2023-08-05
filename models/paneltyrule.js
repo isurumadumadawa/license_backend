@@ -8,14 +8,14 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate({ Panelty, Rule }) {
-      this.belongsTo(Panelty, { foreignKey: "panelty", as: "panelties" });
-      this.belongsTo(Rule, { foreignKey: "rule", as: "rules" });
+      this.belongsTo(Panelty, { foreignKey: "paneltyId", as: "panelties" });
+      this.belongsTo(Rule, { foreignKey: "ruleId", as: "rules" });
     }
   }
   PaneltyRule.init(
     {
       paneltyId: {
-        type: DataTypes.UUID,
+        type: DataTypes.INTEGER,
         allowNull: false,
         validate: {
           notNull: { msg: "Panelty rule must have a panelty id" },
@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
           notEmpty: { msg: "Panelty must not be empty" },
         },
       },
-      rule: {
+      ruleId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         validate: {

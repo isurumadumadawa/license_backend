@@ -20,6 +20,13 @@ const { CreateDriverAuth, GetDriverAuth, GetDriversAuth } = require("./driver");
 
 const { GetRulesAuth } = require("./rule");
 
+const {
+  CreatePaneltyAuth,
+  GetPaneltiesAuth,
+  GetUserPaneltiesAuth,
+  UpdatePaneltyAuth,
+} = require("./panelty");
+
 module.exports = {
   CreateDMTOfficerAuth,
   GetDMTOfficerAuth,
@@ -34,4 +41,8 @@ module.exports = {
   GetDriverAuth,
   GetDriversAuth,
   GetRulesAuth,
+  CreatePaneltyAuth,
+  GetPaneltiesAuth,
+  GetUserPaneltiesAuth,
+  UpdatePaneltyAuth,
 };

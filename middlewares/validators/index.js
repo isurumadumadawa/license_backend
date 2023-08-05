@@ -30,6 +30,12 @@ const {
   getDriverValidationRules,
 } = require("./driver");
 
+const {
+  createPaneltyValidationRules,
+  getUserPaneltiesValidationRules,
+  updatePaneltyValidationRules,
+} = require("./panelty");
+
 const validate = (req, res, next) => {
   const errors = validationResult(req);
   if (errors.isEmpty()) {
@@ -56,5 +62,8 @@ module.exports = {
   getPoliceOfficerValidationRules,
   createPoliceStationValidationRules,
   getPoliceStationValidationRules,
+  createPaneltyValidationRules,
+  getUserPaneltiesValidationRules,
+  updatePaneltyValidationRules,
   validate,
 };

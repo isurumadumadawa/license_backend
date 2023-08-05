@@ -7,10 +7,10 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({ Rule, PaneltyRule }) {
-      this.belongsToMany(Rule, {
+    static associate({ Panelty, PaneltyRule }) {
+      this.belongsToMany(Panelty, {
         through: PaneltyRule,
-        foreignKey: "rule",
+        foreignKey: "ruleId",
         as: "rules",
       });
     }

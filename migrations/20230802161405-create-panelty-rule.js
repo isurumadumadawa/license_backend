@@ -10,14 +10,14 @@ module.exports = {
         type: DataTypes.INTEGER,
       },
       paneltyId: {
-        type: DataTypes.UUID,
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       panelty: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      rule: {
+      ruleId: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
