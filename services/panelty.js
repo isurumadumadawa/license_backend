@@ -3,6 +3,8 @@ const { Panelty } = require("../models");
 const createPanelty = async ({
   driverId,
   vehicleId,
+  vehicleNumber,
+  policeOfficerId,
   policeStationId,
   issuedDate,
   expireDate,
@@ -11,6 +13,8 @@ const createPanelty = async ({
   return await Panelty.create({
     driverId,
     vehicleId,
+    vehicleNumber,
+    policeOfficerId,
     policeStationId,
     issuedDate,
     expireDate,
@@ -26,7 +30,7 @@ const getPanelties = async () => {
 
 const getUserPanelties = async ({ driverId }) => {
   return await Panelty.findAll({
-    include: ["panelties", "driver", "vehicle", "policeArea"],
+    include: ["panelties", "driver", "vehicle", "policeArea", "policeOfficer"],
     where: { driverId },
   });
 };

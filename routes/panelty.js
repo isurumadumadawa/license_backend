@@ -24,6 +24,8 @@ router.post(
     const {
       driverId,
       vehicleId,
+      vehicleNumber,
+      policeOfficerId,
       policeStationId,
       issuedDate,
       expireDate,
@@ -34,6 +36,8 @@ router.post(
       const panelty = await createPanelty({
         driverId,
         vehicleId,
+        vehicleNumber,
+        policeOfficerId,
         policeStationId,
         issuedDate,
         expireDate,

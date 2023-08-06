@@ -7,7 +7,14 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate({ PaneltyRule, Driver, Vehicle, PoliceStation, Rule }) {
+    static associate({
+      PaneltyRule,
+      Driver,
+      Vehicle,
+      PoliceStation,
+      Rule,
+      PoliceOfficer,
+    }) {
       this.belongsToMany(Rule, {
         through: PaneltyRule,
         foreignKey: "paneltyId",
@@ -15,6 +22,10 @@ module.exports = (sequelize, DataTypes) => {
       });
       this.belongsTo(Driver, { foreignKey: "driverId", as: "driver" });
       this.belongsTo(Vehicle, { foreignKey: "vehicleId", as: "vehicle" });
+      this.belongsTo(PoliceOfficer, {
+        foreignKey: "policeOfficerId",
+        as: "policeOfficer",
+      });
       this.belongsTo(PoliceStation, {
         foreignKey: "policeStationId",
         as: "policeArea",
@@ -41,6 +52,22 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           notNull: { msg: "Panelty must have a vehicle id" },
           notEmpty: { msg: "Vehicle id must not be empty" },
+        },
+      },
+      vehicleNumber: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: { msg: "Panelty must have a vehicle number" },
+          notEmpty: { msg: "Vehicle number must not be empty" },
+        },
+      },
+      policeOfficerId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notNull: { msg: "Panelty must have a police officer" },
+          notEmpty: { msg: "Police officer must not be empty" },
         },
       },
       policeStationId: {
