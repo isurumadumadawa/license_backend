@@ -21,7 +21,15 @@ module.exports = {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
+      vehicleNumber: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       policeStationId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      policeOfficerId: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },

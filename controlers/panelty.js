@@ -12,6 +12,8 @@ const { AppError, ERROR_STATUSES, STATUS_CODES } = require("../utills/error");
 const createPanelty = async ({
   driverId,
   vehicleId,
+  vehicleNumber,
+  policeOfficerId,
   policeStationId,
   issuedDate,
   expireDate,
@@ -21,6 +23,8 @@ const createPanelty = async ({
   const panelty = await createPaneltyService({
     driverId,
     vehicleId,
+    vehicleNumber,
+    policeOfficerId,
     policeStationId,
     issuedDate,
     expireDate,

@@ -1,6 +1,12 @@
 const { body, param } = require("express-validator");
 
-const { Driver, PoliceStation, Panelty, Vehicle } = require("../../models");
+const {
+  Driver,
+  PoliceStation,
+  Panelty,
+  Vehicle,
+  PoliceOfficer,
+} = require("../../models");
 const createPaneltyValidationRules = [
   body("driverId", "Required Valid Driver Id!")
     .isNumeric()
@@ -22,6 +28,18 @@ const createPaneltyValidationRules = [
       });
       if (!user) {
         return Promise.reject("Vehicle Not Found");
+      }
+    }),
+  body("vehicleNumber", "Required Valid Vehicle number!").isString().notEmpty(),
+  body("policeOfficerId", "Required Valid Police Officer!")
+    .isNumeric()
+    .notEmpty()
+    .custom(async (value) => {
+      const user = await PoliceOfficer.findOne({
+        where: { id: value },
+      });
+      if (!user) {
+        return Promise.reject("Police Officer Not Found");
       }
     }),
   body("policeStationId", "Required Valid Police Station!")
