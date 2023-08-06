@@ -70,7 +70,11 @@ const GetPoliceStationsAuth = async (req, res, next) => {
   const isAuthorized = await ValidateToken(req);
 
   if (isAuthorized) {
-    if (req?.user?.roleId && req?.user?.roleId == "1") return next();
+    if (
+      req?.user?.roleId &&
+      (req?.user?.roleId == "1" || req?.user?.roleId == "3")
+    )
+      return next();
     handleError({
       error: new AppError(
         "unauthorized!",
