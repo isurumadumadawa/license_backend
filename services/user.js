@@ -7,7 +7,7 @@ const createUser = async ({ userName, password, roleId, salt }) => {
 const getUserByName = async ({ userName }) => {
   return await User.findOne({
     where: { userName },
-    include: "role",
+    include: ["role", "policeOfficer"],
   });
 };
 

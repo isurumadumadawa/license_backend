@@ -8,6 +8,7 @@ const {
 const { handleError } = require("../error");
 
 const CreatePaneltyAuth = async (req, res, next) => {
+  console.log("is auth.....", req);
   const isAuthorized = await ValidateToken(req);
 
   if (isAuthorized) {

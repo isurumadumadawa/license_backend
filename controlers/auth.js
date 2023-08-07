@@ -11,6 +11,7 @@ const { AppError, ERROR_STATUSES, STATUS_CODES } = require("../utills/error");
 
 const userLogin = async ({ userName, password }) => {
   const user = await getUserByNameService({ userName });
+  console.log("user......", user);
   if (!user)
     throw new AppError(
       "User Not Found!",
@@ -48,6 +49,8 @@ const userLogin = async ({ userName, password }) => {
     userName: user?.userName,
     roleId: user?.roleId,
     role: user?.role?.role,
+    id: user?.policeOfficer?.id,
+    //id: "jkegtrtg",
   });
 };
 

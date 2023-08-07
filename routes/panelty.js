@@ -53,7 +53,7 @@ router.post(
 
       return res.json(panelty);
     } catch (error) {
-      console.log(error);
+      console.log("error........", error);
       next(error);
     }
   }
