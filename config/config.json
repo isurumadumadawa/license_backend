@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "33072@Isuru",
+    "password": "admin",
     "database": "driving_license",
     "host": "127.0.0.1",
     "dialect": "mysql"

@@ -27,6 +27,8 @@ const {
   UpdatePaneltyAuth,
 } = require("./panelty");
 
+const { GetRecomendationAuth } = require("./recomend");
+
 module.exports = {
   CreateDMTOfficerAuth,
   GetDMTOfficerAuth,
@@ -45,4 +47,5 @@ module.exports = {
   GetPaneltiesAuth,
   GetUserPaneltiesAuth,
   UpdatePaneltyAuth,
+  GetRecomendationAuth,
 };

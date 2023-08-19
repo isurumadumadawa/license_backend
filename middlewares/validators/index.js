@@ -36,6 +36,8 @@ const {
   updatePaneltyValidationRules,
 } = require("./panelty");
 
+const { getRecomendationRules } = require("./recomend");
+
 const validate = (req, res, next) => {
   const errors = validationResult(req);
   if (errors.isEmpty()) {
@@ -65,5 +67,6 @@ module.exports = {
   createPaneltyValidationRules,
   getUserPaneltiesValidationRules,
   updatePaneltyValidationRules,
+  getRecomendationRules,
   validate,
 };
