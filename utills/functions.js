@@ -1,7 +1,15 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const otpGenerator = require("otp-generator");
 
-const { APP_SECRET } = require("../config/settings");
+const {
+  APP_SECRET,
+  TWILIO_ACCOUNT_SID,
+  TWILIO_AUTH_TOKEN,
+  TWILIO_MOBILE_NUMBER,
+} = require("../config/settings");
+
+const smsClient = require("twilio")(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 
 //Utility functions
 //Generate Salt
@@ -42,6 +50,23 @@ const ValidateToken = async (req) => {
   return false;
 };
 
+const GenerateOTP = () => {
+  return otpGenerator.generate(4, {
+    digits: true,
+    upperCaseAlphabets: false,
+    specialChars: false,
+  });
+};
+
+const SendMsg = async ({ mobileNumber, body }) => {
+  const msg = await smsClient.messages.create({
+    body: body,
+    from: TWILIO_MOBILE_NUMBER,
+    to: "+94" + mobileNumber.substring(1),
+  });
+  return msg;
+};
+
 const FormateData = (data) => {
   if (data) {
     return { data, status: "Success" };
@@ -56,5 +81,7 @@ module.exports = {
   ValidatePassword,
   GenerateToken,
   ValidateToken,
+  GenerateOTP,
+  SendMsg,
   FormateData,
 };

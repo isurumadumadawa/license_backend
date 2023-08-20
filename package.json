@@ -9,6 +9,8 @@
     "jsonwebtoken": "^9.0.0",
     "keycloak-connect": "^21.1.1",
     "mysql2": "^3.3.3",
-    "sequelize": "^6.31.1"
+    "otp-generator": "^4.0.1",
+    "sequelize": "^6.31.1",
+    "twilio": "^4.15.0"
   }
 }

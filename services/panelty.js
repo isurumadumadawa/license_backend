@@ -35,8 +35,18 @@ const getUserPanelties = async ({ driverId }) => {
   });
 };
 
+const updatePaneltyToClose = async ({ id }) => {
+  return await Panelty.update(
+    { isClosed: true },
+    {
+      where: { id },
+    }
+  );
+};
+
 module.exports = {
   createPanelty,
   getPanelties,
   getUserPanelties,
+  updatePaneltyToClose,
 };
