@@ -13,8 +13,8 @@ const getRecomendation = async ({ rules }) => {
 
   const newRecomendations = recomendation.map((rec) => {
     return {
-      id: rec?.id,
-      penalty: rec?.penalty,
+      ruleId: rec?.id,
+      panelty: rec?.penalty,
       score: rec?.score,
     };
   });
