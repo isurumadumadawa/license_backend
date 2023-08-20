@@ -36,6 +36,18 @@ const getDriver = async ({ uuid }) => {
   });
 };
 
+const getDriverById = async ({ id }) => {
+  return await Driver.findOne({
+    where: { id },
+  });
+};
+
+const getDriverByMobileNumber = async ({ mobileNumber }) => {
+  return await Driver.findOne({
+    where: { mobileNumber },
+  });
+};
+
 const deleteDriver = async ({ driver }) => {
   return await driver.destroy();
 };
@@ -44,4 +56,6 @@ module.exports = {
   createDriver,
   deleteDriver,
   getDriver,
+  getDriverById,
+  getDriverByMobileNumber,
 };

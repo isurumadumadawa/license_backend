@@ -2,6 +2,7 @@ const {
   createPanelty: createPaneltyService,
   getPanelties: getPaneltiesService,
   getUserPanelties: getUserPaneltiesService,
+  updatePaneltyToClose: updatePaneltyToCloseService,
 } = require("../services/panelty");
 const {
   createPaneltyRule: createPaneltyRuleService,
@@ -78,8 +79,21 @@ const getUserPanelties = async ({ driverId }) => {
   return panelties;
 };
 
+const updatePanelty = async ({ id }) => {
+  const panelty = await updatePaneltyToCloseService({ id });
+  if (!panelty)
+    throw new AppError(
+      "Can't Update Panelty!",
+      ERROR_STATUSES.FAIL,
+      STATUS_CODES.INTERNAL_ERROR
+    );
+
+  return panelty;
+};
+
 module.exports = {
   createPanelty,
   getPanelties,
   getUserPanelties,
+  updatePanelty,
 };

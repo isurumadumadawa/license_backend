@@ -8,6 +8,13 @@ const loginValidationRules = [
     .notEmpty(),
 ];
 
+const driverLoginValidationRules = [
+  body("mobileNumber", "Required Valid Mobile Number!")
+    .isString()
+    .notEmpty()
+    .isLength({ min: 10, max: 10 }),
+];
+
 const changePasswordValidationRules = [
   body("userName", "User Name is Required!").isString().notEmpty(),
   body("password", "Password is Required!")
@@ -22,5 +29,6 @@ const changePasswordValidationRules = [
 
 module.exports = {
   loginValidationRules,
+  driverLoginValidationRules,
   changePasswordValidationRules,
 };

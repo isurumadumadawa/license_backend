@@ -1,9 +1,17 @@
-const { getUserByName: getUserByNameService } = require("../services/user");
+const {
+  getUserByName: getUserByNameService,
+  getUserByid: getUserByidService,
+} = require("../services/user");
+const {
+  getDriverByMobileNumber: getDriverByMobileNumberService,
+} = require("../services/driver");
 const {
   ValidatePassword,
   GeneratePassword,
   GenerateSalt,
   GenerateToken,
+  GenerateOTP,
+  SendMsg,
   FormateData,
 } = require("../utills/functions");
 
@@ -51,6 +59,56 @@ const userLogin = async ({ userName, password }) => {
     role: user?.role?.role,
     id: user?.policeOfficer?.id,
     //id: "jkegtrtg",
+  });
+};
+
+const driverLogin = async ({ mobileNumber }) => {
+  const driver = await getDriverByMobileNumberService({ mobileNumber });
+
+  if (!driver)
+    throw new AppError(
+      "Driver Not Found!",
+      ERROR_STATUSES.INVALID,
+      STATUS_CODES.NOT_FOUND
+    );
+
+  const user = await getUserByidService({ id: driver?.userId });
+
+  if (!user)
+    throw new AppError(
+      "User Not Found!",
+      ERROR_STATUSES.INVALID,
+      STATUS_CODES.NOT_FOUND
+    );
+
+  const token = await GenerateToken({
+    uuid: user?.uuid,
+    userName: user?.userName,
+    roleId: user?.roleId,
+    role: user?.role?.role,
+  });
+  if (!token)
+    throw new AppError(
+      "Can't Generate The Token",
+      ERROR_STATUSES.FAIL,
+      STATUS_CODES.INTERNAL_ERROR
+    );
+
+  const otp = GenerateOTP();
+
+  const msg = await SendMsg({
+    mobileNumber: mobileNumber,
+    body: `One Time Password is ${otp}`,
+  });
+  console.log("msg......", msg);
+  return FormateData({
+    token,
+    userId: user?.uuid,
+    userName: user?.userName,
+    roleId: user?.roleId,
+    role: user?.role?.role,
+    id: user?.policeOfficer?.id,
+    otp,
   });
 };
 
@@ -114,5 +172,6 @@ const changeUserPassword = async ({ userName, password, newPassword }) => {
 
 module.exports = {
   userLogin,
+  driverLogin,
   changeUserPassword,
 };

@@ -18,6 +18,13 @@ const getUserByUuid = async ({ uuid }) => {
   });
 };
 
+const getUserByid = async ({ id }) => {
+  return await User.findOne({
+    where: { id },
+    include: "role",
+  });
+};
+
 const getSpecificRoleUser = async ({ roleId }) => {
   return await User.findAll({
     where: { roleId },
@@ -33,6 +40,7 @@ module.exports = {
   createUser,
   getUserByName,
   getUserByUuid,
+  getUserByid,
   getSpecificRoleUser,
   deleteUser,
 };

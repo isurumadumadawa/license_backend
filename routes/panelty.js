@@ -6,14 +6,19 @@ const {
   validate,
   createPaneltyValidationRules,
   getUserPaneltiesValidationRules,
+  updatePaneltyValidationRules,
 } = require("../middlewares/validators");
 const {
   CreatePaneltyAuth,
   GetPaneltiesAuth,
   GetUserPaneltiesAuth,
+  UpdatePaneltyAuth,
 } = require("../middlewares/authorizations");
 const { AppError, ERROR_STATUSES, STATUS_CODES } = require("../utills/error");
-const { getUserPanelties } = require("../services/panelty");
+const {
+  getUserPanelties,
+  updatePaneltyToClose,
+} = require("../services/panelty");
 
 router.post(
   "/",
@@ -97,5 +102,28 @@ router.get("/:id", GetUserPaneltiesAuth, async (req, res, next) => {
     next(error);
   }
 });
+
+router.put(
+  "/:id",
+  UpdatePaneltyAuth,
+  UpdatePaneltyAuth,
+  validate,
+  async (req, res, next) => {
+    try {
+      const id = req.params.id;
+      const panelties = await updatePaneltyToClose({ id });
+      if (!panelties)
+        throw new AppError(
+          "Can't Get Panelties!",
+          ERROR_STATUSES.FAIL,
+          STATUS_CODES.INTERNAL_ERROR
+        );
+      return res.json(panelties);
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  }
+);
 
 module.exports = router;

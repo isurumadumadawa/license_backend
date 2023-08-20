@@ -1,10 +1,15 @@
 const express = require("express");
 const router = express.Router();
 
-const { userLogin, changeUserPassword } = require("../controlers/auth");
+const {
+  userLogin,
+  driverLogin,
+  changeUserPassword,
+} = require("../controlers/auth");
 const {
   validate,
   loginValidationRules,
+  driverLoginValidationRules,
   changePasswordValidationRules,
 } = require("../middlewares/validators");
 const { AppError, ERROR_STATUSES, STATUS_CODES } = require("../utills/error");
@@ -17,6 +22,29 @@ router.post(
     try {
       const { userName, password } = req.body;
       const login = await userLogin({ password, userName });
+      if (!login)
+        throw new AppError(
+          "Can't Login User!",
+          ERROR_STATUSES.FAIL,
+          STATUS_CODES.INTERNAL_ERROR
+        );
+
+      return res.json(login);
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  }
+);
+
+router.post(
+  "/driver-login",
+  driverLoginValidationRules,
+  validate,
+  async (req, res, next) => {
+    try {
+      const { mobileNumber } = req.body;
+      const login = await driverLogin({ mobileNumber });
       if (!login)
         throw new AppError(
           "Can't Login User!",

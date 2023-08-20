@@ -71,21 +71,21 @@ const createPaneltyValidationRules = [
 ];
 
 const updatePaneltyValidationRules = [
-  param("uuid", "Panelty Id id Required!")
+  param("id", "Panelty Id id Required!")
     .isString()
     .notEmpty()
     .custom(async (value) => {
       const user = await Panelty.findOne({
-        where: { uuid: value },
+        where: { id: value },
       });
       if (!user) {
         return Promise.reject("Panelty Not Found");
       }
     }),
-  body("image", "Required Valid Image URL!")
-    .isString()
-    .notEmpty()
-    .isURL({ require_protocol: true }),
+  // body("image", "Required Valid Image URL!")
+  //   .isString()
+  //   .notEmpty()
+  //   .isURL({ require_protocol: true }),
 ];
 
 const getUserPaneltiesValidationRules = [

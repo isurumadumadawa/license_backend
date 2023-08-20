@@ -9,6 +9,7 @@ const {
 const {
   loginValidationRules,
   changePasswordValidationRules,
+  driverLoginValidationRules,
 } = require("./auth");
 const {
   createDMTOfficerValidationRules,
@@ -57,6 +58,7 @@ module.exports = {
   createDriverValidationRules,
   getDriverValidationRules,
   loginValidationRules,
+  driverLoginValidationRules,
   changePasswordValidationRules,
   createDMTOfficerValidationRules,
   getDMTOfficerValidationRules,
