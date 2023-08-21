@@ -103,7 +103,7 @@ const driverLogin = async ({ mobileNumber }) => {
   console.log("msg......", msg);
   return FormateData({
     token,
-    userId: user?.uuid,
+    userId: driver?.uuid,
     userName: user?.userName,
     roleId: user?.roleId,
     role: user?.role?.role,

@@ -42,7 +42,9 @@ const GetDriverAuth = async (req, res, next) => {
   if (isAuthorized) {
     if (
       req?.user?.roleId &&
-      (req?.user?.roleId == "1" || req?.user?.roleId == "2")
+      (req?.user?.roleId == "1" ||
+        req?.user?.roleId == "2" ||
+        req?.user?.roleId == "5")
     )
       return next();
     if (req?.user?.uuid && req?.user?.uuid == req.params.uuid) return next();

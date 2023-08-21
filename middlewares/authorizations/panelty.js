@@ -72,7 +72,9 @@ const GetUserPaneltiesAuth = async (req, res, next) => {
   if (isAuthorized) {
     if (
       req?.user?.roleId &&
-      (req?.user?.roleId == "4" || req?.user?.roleId == "3")
+      (req?.user?.roleId == "4" ||
+        req?.user?.roleId == "3" ||
+        req?.user?.roleId == "5")
     )
       return next();
 

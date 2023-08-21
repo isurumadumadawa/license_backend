@@ -72,7 +72,9 @@ const GetPoliceStationsAuth = async (req, res, next) => {
   if (isAuthorized) {
     if (
       req?.user?.roleId &&
-      (req?.user?.roleId == "1" || req?.user?.roleId == "3")
+      (req?.user?.roleId == "1" ||
+        req?.user?.roleId == "3" ||
+        req?.user?.roleId == "5")
     )
       return next();
     handleError({
