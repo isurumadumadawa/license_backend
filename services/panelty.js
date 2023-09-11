@@ -32,6 +32,7 @@ const getUserPanelties = async ({ driverId }) => {
   return await Panelty.findAll({
     include: ["panelties", "driver", "vehicle", "policeArea", "policeOfficer"],
     where: { driverId },
+    order: [["issuedDate", "DESC"]],
   });
 };
 
