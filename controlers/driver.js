@@ -6,6 +6,7 @@ const {
 const {
   createDriver: createDriverService,
   getDriver: getDriverService,
+  getDriverByMobileNumber: getDriverByMobileNumberService,
 } = require("../services/driver");
 const {
   createDriverVehicle: createDriverVehicleService,
@@ -112,6 +113,20 @@ const getDriver = async ({ uuid }) => {
   return driver;
 };
 
+const getDriverByMobile = async ({ mobileNumber }) => {
+  const driver = await getDriverByMobileNumberService({ mobileNumber });
+  console.log("driver....", driver);
+  if (!driver)
+    throw new AppError(
+      "User Not Found!",
+      ERROR_STATUSES.INVALID,
+      STATUS_CODES.NOT_FOUND
+    );
+  // driver.password = undefined;
+  // driver.salt = undefined;
+  return driver;
+};
+
 const getDrivers = async () => {
   const drivers = await getSpecificRoleUserService({ roleId: 5 });
   if (!drivers)
@@ -133,5 +148,6 @@ const getDrivers = async () => {
 module.exports = {
   createDriver,
   getDriver,
+  getDriverByMobile,
   getDrivers,
 };

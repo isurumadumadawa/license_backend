@@ -16,7 +16,12 @@ const {
   GetPoliceStationsAuth,
 } = require("./policeStation");
 
-const { CreateDriverAuth, GetDriverAuth, GetDriversAuth } = require("./driver");
+const {
+  CreateDriverAuth,
+  GetDriverAuth,
+  GetDriverByMobileAuth,
+  GetDriversAuth,
+} = require("./driver");
 
 const { GetRulesAuth } = require("./rule");
 
@@ -41,6 +46,7 @@ module.exports = {
   GetPoliceStationsAuth,
   CreateDriverAuth,
   GetDriverAuth,
+  GetDriverByMobileAuth,
   GetDriversAuth,
   GetRulesAuth,
   CreatePaneltyAuth,
