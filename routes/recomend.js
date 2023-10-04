@@ -15,9 +15,14 @@ router.post(
   getRecomendationRules,
   validate,
   async (req, res, next) => {
-    const { rules } = req.body;
+    const { driverId, vehicleId, policeStationId, issuedDate, rules } =
+      req.body;
     try {
       const recomendation = await getRecomendation({
+        driverId,
+        vehicleId,
+        policeStationId,
+        issuedDate,
         rules,
       });
       if (!recomendation)

@@ -44,6 +44,7 @@ const GetDriverAuth = async (req, res, next) => {
       req?.user?.roleId &&
       (req?.user?.roleId == "1" ||
         req?.user?.roleId == "2" ||
+        req?.user?.roleId == "4" ||
         req?.user?.roleId == "5")
     )
       return next();
@@ -71,6 +72,79 @@ const GetDriverAuth = async (req, res, next) => {
     next,
   });
 };
+
+const GetDriverByMobileAuth = async (req, res, next) => {
+  const isAuthorized = await ValidateToken(req);
+
+  if (isAuthorized) {
+    if (
+      req?.user?.roleId &&
+      (req?.user?.roleId == "1" ||
+        req?.user?.roleId == "2" ||
+        req?.user?.roleId == "4")
+    ) {
+      return next();
+    }
+
+    handleError({
+      error: new AppError(
+        "unauthorized!",
+        ERROR_STATUSES.FORBIDDEN,
+        STATUS_CODES.FORBIDDEN
+      ),
+      req,
+      res,
+      next,
+    });
+  }
+
+  handleError({
+    error: new AppError(
+      "unauthorized!",
+      ERROR_STATUSES.FORBIDDEN,
+      STATUS_CODES.FORBIDDEN
+    ),
+    req,
+    res,
+    next,
+  });
+};
+
+// const GetDriverByMobileAuth = async (req, res, next) => {
+//   const isAuthorized = await ValidateToken(req);
+
+//   if (isAuthorized) {
+//     if (
+//       req?.user?.roleId &&
+//       (req?.user?.roleId == "1" ||
+//         req?.user?.roleId == "2" ||
+//         req?.user?.roleId == "4")
+//     )
+//       return next();
+
+//     handleError({
+//       error: new AppError(
+//         "unauthorized!",
+//         ERROR_STATUSES.FORBIDDEN,
+//         STATUS_CODES.FORBIDDEN
+//       ),
+//       req,
+//       res,
+//       next,
+//     });
+//   }
+
+//   handleError({
+//     error: new AppError(
+//       "unauthorized!",
+//       ERROR_STATUSES.FORBIDDEN,
+//       STATUS_CODES.FORBIDDEN
+//     ),
+//     req,
+//     res,
+//     next,
+//   });
+// };
 
 const GetDriversAuth = async (req, res, next) => {
   const isAuthorized = await ValidateToken(req);
@@ -108,5 +182,6 @@ const GetDriversAuth = async (req, res, next) => {
 module.exports = {
   CreateDriverAuth,
   GetDriverAuth,
+  GetDriverByMobileAuth,
   GetDriversAuth,
 };

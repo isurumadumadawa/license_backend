@@ -29,6 +29,7 @@ const {
 const {
   createDriverValidationRules,
   getDriverValidationRules,
+  getDriverByMobileValidationRules,
 } = require("./driver");
 
 const {
@@ -57,6 +58,7 @@ const validate = (req, res, next) => {
 module.exports = {
   createDriverValidationRules,
   getDriverValidationRules,
+  getDriverByMobileValidationRules,
   loginValidationRules,
   driverLoginValidationRules,
   changePasswordValidationRules,

@@ -1,15 +1,22 @@
 const express = require("express");
 const router = express.Router();
 
-const { createDriver, getDriver, getDrivers } = require("../controlers/driver");
+const {
+  createDriver,
+  getDriver,
+  getDriverByMobile,
+  getDrivers,
+} = require("../controlers/driver");
 const {
   validate,
   createDriverValidationRules,
+  getDriverByMobileValidationRules,
   getDriverValidationRules,
 } = require("../middlewares/validators");
 const {
   CreateDriverAuth,
   GetDriverAuth,
+  GetDriverByMobileAuth,
   GetDriversAuth,
 } = require("../middlewares/authorizations");
 const { AppError, ERROR_STATUSES, STATUS_CODES } = require("../utills/error");
@@ -81,6 +88,30 @@ router.get("/", GetDriversAuth, async (req, res, next) => {
     next(error);
   }
 });
+
+router.get(
+  "/mobile/:mobileNumber",
+  GetDriverByMobileAuth,
+  getDriverByMobileValidationRules,
+  validate,
+  async (req, res, next) => {
+    try {
+      const mobileNumber = req.params.mobileNumber;
+      console.log(mobileNumber);
+      const user = await getDriverByMobile({ mobileNumber });
+      if (!user)
+        throw new AppError(
+          "Can't Get User!",
+          ERROR_STATUSES.FAIL,
+          STATUS_CODES.INTERNAL_ERROR
+        );
+      return res.json(user);
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  }
+);
 
 router.get(
   "/:uuid",

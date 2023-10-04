@@ -69,7 +69,23 @@ const getDriverValidationRules = [
     }),
 ];
 
+const getDriverByMobileValidationRules = [
+  param("mobileNumber", "Required Valid Mobile Number!")
+    .isString()
+    .notEmpty()
+    .isLength({ min: 10, max: 10 })
+    .custom(async (value) => {
+      const user = await Driver.findOne({
+        where: { mobileNumber: value },
+      });
+      if (!user) {
+        return Promise.reject("User Not Found");
+      }
+    }),
+];
+
 module.exports = {
   createDriverValidationRules,
   getDriverValidationRules,
+  getDriverByMobileValidationRules,
 };
